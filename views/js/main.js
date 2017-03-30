@@ -421,7 +421,7 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-  // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+  /* Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
     var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
@@ -446,11 +446,16 @@ var resizePizzas = function(size) {
 
     return dx;
   }
+*/
+// Modifications:
+  // pizzaContainers is queried in the beginning and not in the loop anymore
+  // calculation of the the width is now done inside the function ( not using dx anymore)
+  // the new width is calculated outside the loop
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-     var pizzaContainers = document.getElementsByClassName("randomPizzaContainer");
 
+    var pizzaContainers = document.getElementsByClassName("randomPizzaContainer");
     switch(size) {
       case "1":
         newWidth=25;
@@ -470,6 +475,7 @@ var resizePizzas = function(size) {
       pizzaContainers[i].style.width = newWidth + "%";
     }
   }
+
 
   changePizzaSizes(size);
 
@@ -539,8 +545,8 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  var rows = Math.ceil(window.innerHeight/s)
-  var elem
+  var rows = Math.ceil(window.innerHeight/s);
+  var elem;
   for (var i = 0; i < rows * cols; i++) {
     elem = document.createElement('img');
     elem.className = 'mover';
